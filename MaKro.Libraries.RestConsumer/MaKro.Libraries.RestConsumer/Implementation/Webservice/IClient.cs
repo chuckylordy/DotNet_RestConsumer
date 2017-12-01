@@ -12,11 +12,16 @@ namespace MaKro.Libraries.RestConsumer.Implementation.Webservice
     public interface IClient
     {
         #region Initialization
-        void Init();
+
+        void Init(HttpClient aiClient, int aiTimeoutMinutes = 5);
 
         void Init(string aiUsername, string aiPassword, int aiTimeout = 5);
 
+        void Init(int aiTimeoutMinutes);
         #endregion
+
+        //ToDo: Authentication with IClient interface or for any client alone?
+        bool Authenticate(string aiUsername, string aiPassword);
 
         #region Get-Methods
 
@@ -25,8 +30,6 @@ namespace MaKro.Libraries.RestConsumer.Implementation.Webservice
         string Get(string aiRessource);
 
         Stream GetRaw(string aiRessource);
-
-        HttpRequestMessage GetGetRequest(string aiRessource);
 
         #endregion
 
@@ -39,8 +42,6 @@ namespace MaKro.Libraries.RestConsumer.Implementation.Webservice
         string Post<T>(string aiRessource, T aiRequestBody);
 
         HttpStatusCode PostMultiparts(string aiRessource, IList<HttpContent> aiContentList, out string aoMessage);
-
-        HttpRequestMessage GetPostRequest<T>(string aiRessource, T aiRequestBody);
 
         #endregion
 

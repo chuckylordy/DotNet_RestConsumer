@@ -47,6 +47,21 @@ namespace MaKro.Libraries.RestConsumer.Implementation.Webservice
             return true;
         }
 
+        public void Init(HttpClient aiClient, int aiTimeoutMinutes = 5)
+        {
+            
+        }
+
+        public void Init(int aiTimeoutMinutes)
+        {
+          
+        }
+
+        public bool Authenticate(string aiUsername, string aiPassword)
+        {
+            return true;
+        }
+
         public string Post<T>(string aiRessource, T aiRequestBody)
         {
             return "MockUp: Successfully posted to the ressource " + aiRessource;
